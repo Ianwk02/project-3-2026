@@ -48,7 +48,7 @@ def ComputeMemberForces(bars):
         dfx = bar.end_node.xdisp
         dfy = bar.end_node.ydisp
         
-        q_bar = ((A*E)/L)*(np.array([-lambda_x,-lambda_y,lambda_x, lambda_y])@np.array([[dnx],[dny],[dfx],[dfy]]))
+        q_bar = float(((A*E)/L)*(np.array([-lambda_x,-lambda_y,lambda_x, lambda_y])@np.array([[dnx],[dny],[dfx],[dfy]])))
         bar.axial_load = q_bar
    
     # COMPLETE THIS FUNCTION

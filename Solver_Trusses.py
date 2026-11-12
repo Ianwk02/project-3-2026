@@ -7,7 +7,7 @@ Created on Wed Jul 14 14:34:19 2021
 """
 
 import numpy as np
-import Classes_Trusses as ct
+import Classes_Trusses
 
 # compute unknown displacements 
 def ComputeDisplacements(K, F, n_unknowns):
@@ -40,9 +40,9 @@ def ComputeMemberForces(bars):
     for bar in bars:
         E=bar.E
         A=bar.A
-        L= ct.Length(bar)
-        lambda_x = ct.LambdaTerms(bar)[0]
-        lambda_y = ct.LambdaTerms(bar)[1]
+        L= bar.length()
+        lambda_x = bar.LambdaTerms()[0]
+        lambda_y = bar.LambdaTerms()[1]
         dnx = bar.node_init.xdisp
         dny = bar.node_int.ydisp
         dfx = bar.node_end.xdisp
@@ -50,6 +50,7 @@ def ComputeMemberForces(bars):
         
         q_bar = ((A*E)/L)*(np.array([-lambda_x,-lambda_y,lambda_x, lambda_y])@np.array([dnx],[dny],[dfx],[dfy]))
         bar.axial_load = q_bar
+   
     # COMPLETE THIS FUNCTION
     # Compute member forces for all bars using equation 14-23 
     pass
@@ -60,6 +61,7 @@ def ComputeNormalStresses(bars):
         stress = bar.axial_load/bar.A
         
         bar.normal_stress = stress
+    
     # COMPLETE THIS FUNCTION
     # Compute normal stress for all bars
     pass
@@ -67,9 +69,10 @@ def ComputeNormalStresses(bars):
 # compute the critical buckling load of a member
 def ComputeBucklingLoad(bars):
     for bar in bars:
-        Pcr = ((np.pi**2)*bar.E*bar.Iu)/(ct.Length(bar)**2)
+        Pcr = ((np.pi**2)*bar.E*bar.Iu)/(bar.Length()**2)
         
         bar.buckling_load = Pcr
+   
     # COMPLETE THIS FUNCTION
     # Compute critical buckling load for all bars
     pass

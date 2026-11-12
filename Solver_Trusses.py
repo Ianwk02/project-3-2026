@@ -40,7 +40,7 @@ def ComputeMemberForces(bars):
     for bar in bars:
         E=bar.E
         A=bar.A
-        L= bar.length()
+        L= bar.Length()
         lambda_x = bar.LambdaTerms()[0]
         lambda_y = bar.LambdaTerms()[1]
         dnx = bar.node_init.xdisp

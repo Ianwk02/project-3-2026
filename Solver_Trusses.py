@@ -36,7 +36,7 @@ def PostprocessReactions(K, d, F, n_unknowns, nodes):
 
 # determine internal member loads
 def ComputeMemberForces(bars):
-     for bar in bars:
+    for bar in bars:
         E=bar.E
         A=bar.A
         L= ct.Length(bar)

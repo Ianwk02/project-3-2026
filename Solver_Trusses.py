@@ -43,10 +43,10 @@ def ComputeMemberForces(bars):
         L= bar.Length()
         lambda_x = bar.LambdaTerms()[0]
         lambda_y = bar.LambdaTerms()[1]
-        dnx = bar.node_init.xdisp
-        dny = bar.node_int.ydisp
-        dfx = bar.node_end.xdisp
-        dfy = bar.node_end.ydisp
+        dnx = bar.init_node.xdisp
+        dny = bar.init_node.ydisp
+        dfx = bar.end_node.xdisp
+        dfy = bar.end_node.ydisp
         
         q_bar = ((A*E)/L)*(np.array([-lambda_x,-lambda_y,lambda_x, lambda_y])@np.array([dnx],[dny],[dfx],[dfy]))
         bar.axial_load = q_bar

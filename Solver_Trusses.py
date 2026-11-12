@@ -7,6 +7,7 @@ Created on Wed Jul 14 14:34:19 2021
 """
 
 import numpy as np
+import Classes_Trusses as ct
 
 # compute unknown displacements 
 def ComputeDisplacements(K, F, n_unknowns):

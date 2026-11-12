@@ -40,13 +40,13 @@ def ComputeMemberForces(bars):
     for bar in bars:
         E=bar.E
         A=bar.A
-        L= bar.Length()
+        L= bar.Length()*12
         lambda_x = bar.LambdaTerms()[0]
         lambda_y = bar.LambdaTerms()[1]
-        dnx = bar.init_node.xdisp
-        dny = bar.init_node.ydisp
-        dfx = bar.end_node.xdisp
-        dfy = bar.end_node.ydisp
+        dnx = bar.init_node.xdisp*12
+        dny = bar.init_node.ydisp*12
+        dfx = bar.end_node.xdisp*12
+        dfy = bar.end_node.ydisp*12
         product = np.array([-lambda_x,-lambda_y,lambda_x, lambda_y])@np.array([[dnx],[dny],[dfx],[dfy]])
         q_bar = ((A*E)/L)*product.item()
         bar.axial_load = q_bar
@@ -69,7 +69,7 @@ def ComputeNormalStresses(bars):
 # compute the critical buckling load of a member
 def ComputeBucklingLoad(bars):
     for bar in bars:
-        Pcr = ((np.pi**2)*bar.E*bar.Iu)/(bar.Length()**2)
+        Pcr = ((np.pi**2)*bar.E*bar.Iu)/((bar.Length()*12)**2)
         
         bar.buckling_load = Pcr
    
